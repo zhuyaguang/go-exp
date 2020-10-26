@@ -139,13 +139,19 @@ func main() {
 
 ![image-20200921142014208](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200921142014208.png)
 
+21.
+
 ![image-20200921142117652](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200921142117652.png)
 
 ![image-20200921142148425](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200921142148425.png)
 
+22.
+
 ![image-20200921143549861](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200921143549861.png)
 
 参考答案及解析：编译不通过。当使用 type 声明一个新类型，它不会继承原有类型的方法集。
+
+23.
 
 ![image-20200922140338873](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200922140338873.png)
 
@@ -154,21 +160,31 @@ func main() {
 [0 11 12]
 [21 12 13]
 
+
+
+24.
+
 ![image-20200922141319080](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200922141319080.png)
 
 ![image-20200922141340253](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200922141340253.png)
+
+25.
 
 ![image-20200922142245322](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200922142245322.png)
 
 参考答案及解析：A。Go语言的内存回收机制规定，只要有一个指针指向引用一个变量，那么这个变量就不会被释放（内存逃逸），因此在 Go 语言中返回函数参数或临时变量是安全的。
 
+26.
+
 ![image-20200922142437012](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200922142437012.png)
 
 参考答案及解析：AD。全局变量要定义在函数之外，而在函数之外定义的变量只能用 var 定义。短变量声明 := 只能用于函数之内。
 
+27.
+
 ![image-20200923092839735](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200923092839735.png)
 
-参考答案及解析：可以编译通过，输出：true。知识点：Go 代码断行规则。
+参考答案及解析：可以编译通过，输出：true。知识点：Go 代码断行规则。注意
 
 ![image-20200923111751244](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200923111751244.png)
 
