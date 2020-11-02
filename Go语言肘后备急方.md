@@ -186,17 +186,25 @@ func main() {
 
 参考答案及解析：可以编译通过，输出：true。知识点：Go 代码断行规则。注意
 
+28.
+
 ![image-20200923111751244](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200923111751244.png)
 
 参考答案及解析：132。这一题有两点需要注意：1.Add() 方法的返回值依然是指针类型 *Slice，所以可以循环调用方法 Add()；2.defer 函数的参数（包括接收者）是在 defer 语句出现的位置做计算的，而不是在函数执行的时候计算的，所以 s.Add(1) 会先于 s.Add(3) 执行。
+
+29.
 
 ![image-20200924093824427](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200924093824427.png)
 
 参考答案及解析：21。recover() 必须在 defer() 函数中调用才有效，所以第 9 行代码捕获是无效的。在调用 defer() 时，便会计算函数的参数并压入栈中，所以执行第 6 行代码时，此时便会捕获 panic(2)；此后的 panic(1)，会被上一层的 recover() 捕获。所以输出 21。
 
+30.
+
 ![image-20200924094112246](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200924094112246.png)
 
 AD
+
+31.
 
 ![image-20200924095552807](C:\Users\WIN10\AppData\Roaming\Typora\typora-user-images\image-20200924095552807.png)
 
