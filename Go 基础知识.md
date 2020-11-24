@@ -1,4 +1,4 @@
-# Go 基础知识
+## Go 基础知识
 
 ### WaitGroup
 
@@ -22,8 +22,20 @@
 
 ### Goroutine
 
-[Goroutine并发调度模型深度解析之手撸一个高性能Goroutine池](https://www.infoq.cn/article/XF6v3Vapqsqt17FuTVst)
+* [Goroutine并发调度模型深度解析之手撸一个高性能Goroutine池](https://www.infoq.cn/article/XF6v3Vapqsqt17FuTVst)
 
 ### Harbor
 
 **harbor** 镜像仓库的使用和搭建
+
+[Centos8安装Harbor 2.0.1进行镜像服务的管理](https://blog.csdn.net/bufegar0/article/details/107564216)
+
+[Docker 企业级镜像仓库 Harbor 的搭建与维护](https://www.cnblogs.com/operationhome/p/10868498.html)
+
+
+
+## Linux 基础能力
+
+[Bash 基本教程 阮一峰](https://wangdoc.com/bash/intro.html)
+
+[命令行的艺术](https://github.com/jlevy/the-art-of-command-line)
