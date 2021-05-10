@@ -95,7 +95,7 @@ func getDeployment() {
 		panic(err.Error())
 	}
 
-	// 使用 clientsent 获取 Deployments
+	// 使用 clientset 获取 Deployments
 	deployments, err := clientset.AppsV1().Deployments("kube-system").List(context.TODO(),metav1.ListOptions{})
 	if err != nil {
 		panic(err)
