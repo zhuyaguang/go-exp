@@ -1,0 +1,86 @@
+
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.2.5
+  creationTimestamp: null
+  name: guestbooks.webapp.test.io
+spec:
+  group: webapp.test.io
+  names:
+    kind: Guestbook
+    listKind: GuestbookList
+    plural: guestbooks
+    singular: guestbook
+  scope: Cluster
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      description: Guestbook is the Schema for the guestbooks API
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          description: GuestbookSpec defines the desired state of Guestbook
+          properties:
+            alias:
+              enum:
+              - Phone
+              - Address
+              - Name
+              type: string
+            configMapName:
+              description: Name of the ConfigMap for GuestbookSpec's configuration
+              maxLength: 15
+              minLength: 1
+              type: string
+            size:
+              description: Quantity of instances
+              format: int32
+              maximum: 10
+              minimum: 1
+              type: integer
+          required:
+          - configMapName
+          - size
+          type: object
+        status:
+          description: GuestbookStatus defines the observed state of Guestbook
+          properties:
+            active:
+              description: PodName of the active Guestbook node.
+              type: string
+            standby:
+              description: PodNames of the standby Guestbook nodes.
+              items:
+                type: string
+              type: array
+          required:
+          - active
+          - standby
+          type: object
+      type: object
+  version: v1
+  versions:
+  - name: v1
+    served: true
+    storage: true
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

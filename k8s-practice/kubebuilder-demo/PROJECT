@@ -1,0 +1,7 @@
+domain: test.io
+repo: kubebuilder-demo
+resources:
+- group: webapp
+  kind: Guestbook
+  version: v1
+version: "2"
