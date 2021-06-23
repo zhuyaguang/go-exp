@@ -35,11 +35,11 @@
 
 ### 7.利用kubebuilder写一个operator(kubebuilder-demo)
 
-
+[参考一](https://blog.csdn.net/weixin_42072280/article/details/112857621?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.base&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.base#commentBox)
 
 ### 8.利用operator SDK 开发一个operator(opdemo)
 
-
+[为Pod标签编写一个控制器](https://mp.weixin.qq.com/s/cTZteURmc1IzOsbChT7lfQ)
 
 ### 9.静态搭建etcd集群(etcd-cluster-demo)
 
@@ -47,11 +47,13 @@
 
 ### 10.K8S上搭建etcd集群(etcd-cluster-demo)
 
-
-
 11.从0到1开发一个etcd operator
 
 12.校验准入控制器实现
+
+* kubeadm 构建高可用集群
+
+* 只允许使用来自白名单镜像仓库的资源创建 Pod，拒绝使用不受信任的镜像仓库中进行拉取镜像
 
 13.Mutate 准入控制器实现
 
@@ -60,3 +62,21 @@
 15.实现一个一个自定义的ingress 控制器
 
 16.自定义一个调度器(打印日志和GPU）
+
+
+
+
+
+### 遗留作业
+
+1. kubeadm 构建高可用集群
+
+2. 修改kube-apiserver配置，构建admissionwebhook
+
+3. 开发etcd-operator-demo
+
+4. 开发自定义ingress控制器
+
+5. 开发自定义调度器
+
+   
