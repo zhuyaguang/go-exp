@@ -6,8 +6,6 @@
 - 实时监控pod的数量
 - 通过接口创建deploymnet
 
-* [使用k8s.io/client-go的dynamic client的示例](https://zhuanlan.zhihu.com/p/165970638)
-
 ### 2.通过informer来监控资源对象(informer-demo)
 
 > 为什么要用informer来监控资源对象
@@ -35,11 +33,11 @@
 
 ### 7.利用kubebuilder写一个operator(kubebuilder-demo)
 
-[参考一](https://blog.csdn.net/weixin_42072280/article/details/112857621?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.base&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.base#commentBox)
+
 
 ### 8.利用operator SDK 开发一个operator(opdemo)
 
-[为Pod标签编写一个控制器](https://mp.weixin.qq.com/s/cTZteURmc1IzOsbChT7lfQ)
+
 
 ### 9.静态搭建etcd集群(etcd-cluster-demo)
 
