@@ -43,9 +43,7 @@
 
 
 
-### 10.K8S上搭建etcd集群(etcd-cluster-demo)
-
-11.从0到1开发一个etcd operator
+### 10.K8S上搭建etcd集群(etcd-cluster-demo)  11.从0到1开发一个etcd operator
 
 12.校验准入控制器实现
 
