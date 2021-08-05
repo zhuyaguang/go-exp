@@ -1,11 +1,13 @@
-package demo1
+package main
 
 import (
+	"demo1/pkg/pool"
+	"demo1/pkg/work"
 	"fmt"
 )
 
-func demo1() {
-	pool := &Pool{
+func main() {
+	pool := &pool.Pool{
 		Name:      "test",
 		Size:      5,
 		QueueSize: 20,
@@ -27,16 +29,8 @@ type PrintJob struct {
 	Index int
 }
 
-func (pj *PrintJob) Start(worker *Worker) error {
+func (pj *PrintJob) Start(worker *work.Worker) error {
 
 	fmt.Printf("job %s - %d\n", worker.Name, pj.Index)
 	return nil
 }
-
-
-
-
-
-
-
-

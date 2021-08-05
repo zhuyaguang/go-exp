@@ -1,6 +1,7 @@
-package demo1
+package pool
 
 import (
+	"demo1/pkg/work"
 	"fmt"
 	"sync"
 )
@@ -10,10 +11,10 @@ type Pool struct {
 	Name string
 
 	Size    int
-	Workers []*Worker
+	Workers []*work.Worker
 
 	QueueSize int
-	Queue     chan Job
+	Queue     chan work.Job
 }
 
 // Initialize  ...
@@ -22,9 +23,9 @@ func (p *Pool) Initialize() {
 	if p.Size < 1 {
 		p.Size = 1
 	}
-	p.Workers = []*Worker{}
+	p.Workers = []*work.Worker{}
 	for i := 1; i <= p.Size; i++ {
-		worker := &Worker{
+		worker := &work.Worker{
 			ID:   i - 1,
 			Name: fmt.Sprintf("%s-worker-%d", p.Name, i-1),
 		}
@@ -35,7 +36,7 @@ func (p *Pool) Initialize() {
 	if p.QueueSize < 1 {
 		p.QueueSize = 1
 	}
-	p.Queue = make(chan Job, p.QueueSize)
+	p.Queue = make(chan work.Job, p.QueueSize)
 }
 
 // Start ...
@@ -53,7 +54,7 @@ func (p *Pool) Stop() {
 	var wg sync.WaitGroup
 	for _, worker := range p.Workers {
 		wg.Add(1)
-		go func(w *Worker) {
+		go func(w *work.Worker) {
 			defer wg.Done()
 
 			w.Stop()
