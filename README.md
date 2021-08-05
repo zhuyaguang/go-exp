@@ -1,5 +1,5 @@
 ## go-zero 实践
-### shorturl demo
+* shorturl demo
 
 ## k8s 二次开发实践
 
@@ -7,8 +7,7 @@
 
 ## prometheus 实践
 
-### k8s 上部署 prometheus
+* k8s 上部署 prometheus
 
-## 一个 demo 学会 workerPool
+## [workerPool](https://github.com/zhuyaguang/go-exp/blob/main/work-pool/README.md)
 
-多个worker，来处理任务队列里面的任务

@@ -1,6 +1,8 @@
 ### 1.Demo on creating worker pool in GoLang
 
-[一个 demo 学会 workerPool](https://mp.weixin.qq.com/s/YCl7r7l3Ty3wbnImVWRLxg)
+> [实现代码](https://github.com/zhuyaguang/go-exp/tree/main/work-pool/demo1)
+
+* [一个 demo 学会 workerPool](https://mp.weixin.qq.com/s/YCl7r7l3Ty3wbnImVWRLxg)
 
 ### 2.The Case For A Go Worker Pool
 
@@ -110,15 +112,21 @@ func main() {
 原文地址 ：[Go Work Pool 几个典型例子](https://brandur.org/go-worker-pool)
 
 
+
+类似实现：[Go语言的并发与WorkerPool - 第一部分](https://mp.weixin.qq.com/s/5pQS82nE9ivF6NjaXFsolQ)
+
+[Go语言的并发与WorkerPool - 第二部分](https://mp.weixin.qq.com/s?__biz=MzI2MDA1MTcxMg==&mid=2648468414&idx=1&sn=8efed31baa411f2e63e4fe043f207c41&chksm=f2474dd1c530c4c71f94dda44bb97201164df4a9730a5045534cdf354b54b096321e1f1b91a7&cur_album_id=1506050738668486658&scene=189#rd)
+
+源码GitHub：https://github.com/Joker666/goworkerpool
+
+
 ### 3.企业级 goroutine 池
 
 > ants是一个高性能的 goroutine 池，实现了对大规模 goroutine 的调度管理、goroutine 复用，允许使用者在开发并发程序的时候限制 goroutine 数量，复用资源，达到更高效执行任务的效果。
 
-[Goroutine 并发调度模型深度解析之手撸一个高性能 Goroutine 池](https://www.infoq.cn/article/XF6v3Vapqsqt17FuTVst)
-
 [ants github 地址](https://github.com/panjf2000/ants/blob/master/README_ZH.md)
 
-
+[Goroutine 并发调度模型深度解析之手撸一个高性能 Goroutine 池](https://www.infoq.cn/article/XF6v3Vapqsqt17FuTVst)
 
 ### 4.任务队列
 
