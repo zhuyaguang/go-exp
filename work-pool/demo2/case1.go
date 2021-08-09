@@ -53,32 +53,36 @@ func (p *Pool) work() {
 // Task encapsulates a work item that should go in a work
 // pool.
 type Task struct {
+	id int
 	// Err holds an error that occurred during a task. Its
 	// result is only meaningful after Run has been called
 	// for the pool that holds it.
-	 Err error
+	Err error
 
 	f func() error
 }
 
 // NewTask initializes a new task based on a given work
 // function.
-func NewTask(f func() error) *Task {
-	return &Task{f: f}
+func NewTask(f func() error, rid int) *Task {
+	return &Task{
+		id: rid,
+		f:  f}
 }
 
 // Run runs a Task and does appropriate accounting via a
 // given sync.WorkGroup.
 func (t *Task) Run(wg *sync.WaitGroup) {
 	t.Err = t.f()
+	fmt.Println("run task ", t.id)
 	wg.Done()
 }
 
-func main()  {
+func main() {
 	tasks := []*Task{
-		NewTask(func() error { return nil }),
-		NewTask(func() error { return nil }),
-		NewTask(func() error { return nil }),
+		NewTask(func() error { return nil }, 1),
+		NewTask(func() error { return nil }, 2),
+		NewTask(func() error { return nil }, 3),
 	}
 
 	p := NewPool(tasks, 5)
@@ -96,4 +100,3 @@ func main()  {
 		}
 	}
 }
-
