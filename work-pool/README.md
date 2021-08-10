@@ -131,28 +131,43 @@ func main() {
 
 
 
+**1.以上只针对 生产者-消费者 同类型任务模型，如果有不同类型的task，该怎么办？**
 
-### 4.企业级 goroutine 池
+> 1.可以通过统一grpc方法，由一个双流方法发送接收一个统一的message结构体，屏蔽了不同方法的差异。（这样不同的算法就可以放在一个task queue里面，不用放在不同的queue channel里面）
+>
+> 再封装一个分发的接口，负责发送到不同的后端算法，避免A任务发送到B后端。
 
-> ants是一个高性能的 goroutine 池，实现了对大规模 goroutine 的调度管理、goroutine 复用，允许使用者在开发并发程序的时候限制 goroutine 数量，复用资源，达到更高效执行任务的效果。
+~~~go
+type Task struct {
+	Err  error
+	Data interface{}
+	f    func(interface{}) error
+}
+~~~
 
-[ants github 地址](https://github.com/panjf2000/ants/blob/master/README_ZH.md)
+通过在Task结构体里面，定义一个成员函数，可以让不同的task做不同的事情。
 
-[Goroutine 并发调度模型深度解析之手撸一个高性能 Goroutine 池](https://www.infoq.cn/article/XF6v3Vapqsqt17FuTVst)
+**2.如果worker处理任务方式不一样，怎么办？**
+
+> task定义一个 f 参数，参数传入一个func ，对应不同的worker。
+
+**3.如果生产者速度，大于消费者速度，造成了，产品堆积，超过了channel的缓冲区，怎么办？**
+
+加入grpc的主动健康检测机制，服务不可用会停止生产
+
+task buffer满了，会阻塞传入。
+
+采用redis消息队列处理，redis会把未处理的任务持久化。然后一个个消费。
+
+**4.如果生产者(worker)数量是动态的，怎么办？**
+
+> 统一message结构体后，任务就没有类型的区分，worker也没有类型之分，worker的数量就是并发量，可以自定义设置。
 
 
 
-**1.以上只针对 生产者-消费者 同类型任务模型，如果有不同类型的worker-task，该怎么办？**
+### 4.任务队列
 
-**2.如果生产者速度，大于消费者速度，造成了，产品堆积，超过了channel的缓冲区，怎么办？**
-
-**3.如果生产者(worker)数量是动态的，怎么办？**
-
-
-
-### 5.任务队列
-
-1.taskq
+1.taskq （解决高并发场景）
 
 >  Golang asynchronous task/job queue with Redis, SQS, IronMQ, and in-memory backends
 >
@@ -178,4 +193,10 @@ https://twinnation.org/articles/39/go-concurrency-goroutines-worker-pools-and-th
 
 
 
- 
+### 企业级 goroutine 池
+
+> ants是一个高性能的 goroutine 池，实现了对大规模 goroutine 的调度管理、goroutine 复用，允许使用者在开发并发程序的时候限制 goroutine 数量，复用资源，达到更高效执行任务的效果。
+
+[ants github 地址](https://github.com/panjf2000/ants/blob/master/README_ZH.md)
+
+[Goroutine 并发调度模型深度解析之手撸一个高性能 Goroutine 池](https://www.infoq.cn/article/XF6v3Vapqsqt17FuTVst)
