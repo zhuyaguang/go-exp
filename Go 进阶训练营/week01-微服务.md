@@ -295,7 +295,7 @@ health check，同样也被用于外挂方式的容器健康检测，或者流�
 - 客户端重启，保持重新均衡，同时对后端重启保持透明，同时连接的变动最小
   - 消费者变化的时候需要 重新平衡
 
-```
+```go
 // from google sre
 func Subset(backends []string, clientID, subsetSize int) []string {
 	subsetCount := len(backends) / subsetSize
@@ -342,9 +342,7 @@ https://xargin.com/limiting-conn-wih-subset/
 
 ##### 解决方案 2：多租户，染色发布
 
-[![image.png](https://img.lailin.xyz/image/1606799997241-a37aa06a-4d44-4001-96bb-b0287e9eead5.png)](https://img.lailin.xyz/image/1606799997241-a37aa06a-4d44-4001-96bb-b0287e9eead5.png)
-
-[image.png](https://img.lailin.xyz/image/1606799997241-a37aa06a-4d44-4001-96bb-b0287e9eead5.png)
+![image.png](https://img.lailin.xyz/image/1606799997241-a37aa06a-4d44-4001-96bb-b0287e9eead5.png)
 
 
 
