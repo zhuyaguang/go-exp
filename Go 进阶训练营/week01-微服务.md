@@ -240,9 +240,9 @@ health check，同样也被用于外挂方式的容器健康检测，或者流�
 
 > b 站仿照用 go 写了一个 https://github.com/bilibili/discovery
 
-**[![image.png](https://img.lailin.xyz/image/1606745349658-c7638390-9cbd-4eca-b2ad-4baa15449c3f.png)](https://img.lailin.xyz/image/1606745349658-c7638390-9cbd-4eca-b2ad-4baa15449c3f.png)**
+![image.png](https://img.lailin.xyz/image/1606745349658-c7638390-9cbd-4eca-b2ad-4baa15449c3f.png)
 
-**[image.png](https://img.lailin.xyz/image/1606745349658-c7638390-9cbd-4eca-b2ad-4baa15449c3f.png)**
+
 
 
 
@@ -312,7 +312,6 @@ func Subset(backends []string, clientID, subsetSize int) []string {
 	start := subsetID * subsetSize
 	return backends[start : start+subsetSize]
 }
-Copy
 ```
 
 **为什么上面这个算法可以保证可以均匀分布？**
