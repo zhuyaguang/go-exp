@@ -37,13 +37,30 @@
 
 ### 8.利用operator SDK 开发一个operator(opdemo)
 
+* crd=AppService=deploy+svc
 
 
 ### 9.静态搭建etcd集群(etcd-cluster-demo)
 
+* 使用二进制搭建，[启动命令](./etcd-cluster-demo/README.md)
+
+### 10.K8S上搭建etcd集群(etcd-cluster-demo)  
+
+etcd 集群的编排的资源清单文件我们可以使用 Kubernetes 源码中提供的，位于目录：test/e2e/testing-manifests/statefulset/etcd 下面
+
+```shell
+$ ls -la test/e2e/testing-manifests/statefulset/etcd  
+total 40
+drwxr-xr-x   6 ych  staff   192 Jun 18  2019 .
+drwxr-xr-x  10 ych  staff   320 Oct 10  2018 ..
+-rw-r--r--   1 ych  staff   173 Oct 10  2018 pdb.yaml
+-rw-r--r--   1 ych  staff   242 Oct 10  2018 service.yaml
+-rw-r--r--   1 ych  staff  6441 Jun 18  2019 statefulset.yaml
+-rw-r--r--   1 ych  staff   550 Oct 10  2018 tester.yaml
+```
 
 
-### 10.K8S上搭建etcd集群(etcd-cluster-demo)  11.从0到1开发一个etcd operator
+11.从0到1开发一个etcd operator
 
 12.校验准入控制器实现
 
