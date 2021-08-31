@@ -52,7 +52,7 @@ type EtcdClusterReconciler struct {
 func (r *EtcdClusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 
 	ctx = context.Background()
-	fmt.Printf("etcdcluster", req.NamespacedName)
+	fmt.Printf("etcdcluster %s", req.NamespacedName)
 
 	// 首先我们获取 EtcdCluster 实例
 	var etcdCluster etcdv1alpha1.EtcdCluster
@@ -80,7 +80,7 @@ func (r *EtcdClusterReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 	if err != nil {
 		return ctrl.Result{}, err
 	}
-	fmt.Printf("CreateOrUpdate", "Service", or)
+	fmt.Printf("CreateOrUpdate Service %s", or)
 
 	// CreateOrUpdate StatefulSet
 	var sts appsV1.StatefulSet
@@ -94,7 +94,7 @@ func (r *EtcdClusterReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 	if err != nil {
 		return ctrl.Result{}, err
 	}
-	fmt.Printf("CreateOrUpdate", "StatefulSet", or)
+	fmt.Printf("CreateOrUpdate StatefulSet %s", or)
 
 	return ctrl.Result{}, nil
 }
