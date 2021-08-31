@@ -76,7 +76,7 @@ func (r *EtcdClusterReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 	svc.Name = etcdCluster.Name
 	svc.Namespace = etcdCluster.Namespace
 	if err := retry.RetryOnConflict(retry.DefaultRetry, func() error {
-		or, err := ctrl.CreateOrUpdate(ctx, r, &svc, func() error {
+		or, err := ctrl.CreateOrUpdate(ctx, r.Client, &svc, func() error {
 			// 调谐的函数必须在这里面实现，实际上就是去拼装我们的 Service
 			MutateHeadlessSvc(&etcdCluster, &svc)
 			return controllerutil.SetControllerReference(&etcdCluster, &svc, r.Scheme)
@@ -93,7 +93,7 @@ func (r *EtcdClusterReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 	sts.Namespace = etcdCluster.Namespace
 
 	if err := retry.RetryOnConflict(retry.DefaultRetry, func() error {
-		or, err := ctrl.CreateOrUpdate(ctx, r, &sts, func() error {
+		or, err := ctrl.CreateOrUpdate(ctx, r.Client, &sts, func() error {
 			// 调谐的函数必须在这里面实现，实际上就是去拼装我们的 StatefulSet
 			MutateStatefulSet(&etcdCluster, &sts)
 			return controllerutil.SetControllerReference(&etcdCluster, &sts, r.Scheme)
