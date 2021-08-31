@@ -19,6 +19,7 @@ package controllers
 import (
 	"context"
 	"fmt"
+	"k8s.io/client-go/util/retry"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 
 	appsV1 "k8s.io/api/apps/v1"
@@ -39,6 +40,8 @@ type EtcdClusterReconciler struct {
 //+kubebuilder:rbac:groups=etcd.ydzs.io,resources=etcdclusters,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=etcd.ydzs.io,resources=etcdclusters/status,verbs=get;update;patch
 //+kubebuilder:rbac:groups=etcd.ydzs.io,resources=etcdclusters/finalizers,verbs=update
+//+kubebuilder:rbac:groups=apps,resources=statefulsets,verbs=get;list;watch;create;update;patch;delete
+//+kubebuilder:rbac:groups=core,resources=services,verbs=get;list;watch;create;update;patch;delete
 
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
@@ -72,36 +75,45 @@ func (r *EtcdClusterReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 	var svc corev1.Service
 	svc.Name = etcdCluster.Name
 	svc.Namespace = etcdCluster.Namespace
-	or, err := ctrl.CreateOrUpdate(ctx, r.Client, &svc, func() error {
-		// 调谐必须在这个函数中去实现
-		MutateHeadlessSvc(&etcdCluster, &svc)
-		return controllerutil.SetControllerReference(&etcdCluster, &svc, r.Scheme)
-	})
-	if err != nil {
+	if err := retry.RetryOnConflict(retry.DefaultRetry, func() error {
+		or, err := ctrl.CreateOrUpdate(ctx, r, &svc, func() error {
+			// 调谐的函数必须在这里面实现，实际上就是去拼装我们的 Service
+			MutateHeadlessSvc(&etcdCluster, &svc)
+			return controllerutil.SetControllerReference(&etcdCluster, &svc, r.Scheme)
+		})
+		fmt.Println("CreateOrUpdate Result", "Service", or)
+		return err
+	}); err != nil {
 		return ctrl.Result{}, err
 	}
-	fmt.Printf("CreateOrUpdate Service %s", or)
 
 	// CreateOrUpdate StatefulSet
 	var sts appsV1.StatefulSet
 	sts.Name = etcdCluster.Name
 	sts.Namespace = etcdCluster.Namespace
-	or, err = ctrl.CreateOrUpdate(ctx, r.Client, &sts, func() error {
-		// 调谐必须在这个函数中去实现
-		MutateStatefulSet(&etcdCluster, &sts)
-		return controllerutil.SetControllerReference(&etcdCluster, &sts, r.Scheme)
-	})
-	if err != nil {
+
+	if err := retry.RetryOnConflict(retry.DefaultRetry, func() error {
+		or, err := ctrl.CreateOrUpdate(ctx, r, &sts, func() error {
+			// 调谐的函数必须在这里面实现，实际上就是去拼装我们的 StatefulSet
+			MutateStatefulSet(&etcdCluster, &sts)
+			return controllerutil.SetControllerReference(&etcdCluster, &sts, r.Scheme)
+		})
+		fmt.Println("CreateOrUpdate Result", "StatefulSet", or)
+		return err
+	}); err != nil {
 		return ctrl.Result{}, err
 	}
-	fmt.Printf("CreateOrUpdate StatefulSet %s", or)
+
 
 	return ctrl.Result{}, nil
 }
 
 // SetupWithManager sets up the controller with the Manager.
 func (r *EtcdClusterReconciler) SetupWithManager(mgr ctrl.Manager) error {
+
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&etcdv1alpha1.EtcdCluster{}).
+		Owns(&appsV1.StatefulSet{}).
+		Owns(&corev1.Service{}).
 		Complete(r)
 }
