@@ -33,18 +33,20 @@
 
 ### 7.利用kubebuilder写一个operator(kubebuilder-demo)
 
-
+[kubebuilder 下载地址](https://github.com/kubernetes-sigs/kubebuilder/releases)
 
 ### 8.利用operator SDK 开发一个operator(opdemo)
 
 * crd=AppService=deploy+svc
 
 
-### 9.静态搭建etcd集群(etcd-cluster-demo)
 
-* 使用二进制搭建，[启动命令](./etcd-cluster-demo/README.md)
+### 9.etcd集群搭建(etcd-cluster-demo)
+* 1.静态搭建etcd集群
 
-### 10.K8S上搭建etcd集群(etcd-cluster-demo)  
+使用二进制搭建，[启动命令](./etcd-cluster-demo/README.md)
+
+* 2.K8S上搭建etcd集群
 
 etcd 集群的编排的资源清单文件我们可以使用 Kubernetes 源码中提供的，位于目录：test/e2e/testing-manifests/statefulset/etcd 下面
 
@@ -58,23 +60,62 @@ drwxr-xr-x  10 ych  staff   320 Oct 10  2018 ..
 -rw-r--r--   1 ych  staff  6441 Jun 18  2019 statefulset.yaml
 -rw-r--r--   1 ych  staff   550 Oct 10  2018 tester.yaml
 ```
+* 其中 service.yaml 文件中就是一个用户 StatefulSet 使用的 headless service
+* 而 pdb.yaml 文件是用来保证 etcd 的高可用的一个 PodDisruptionBudget 资源对象
 
 
-11.从0到1开发一个etcd operator
 
-12.校验准入控制器实现
+### 10.从0到1开发一个etcd operator
+在开发 Operator 之前我们需要先提前想好我们的 CRD 资源对象
+~~~yaml
+apiVersion: etcd.ydzs.io/v1alpha1
+kind: EtcdCluster
+metadata:
+  name: demo
+spec:
+	size: 3  # 副本数量
+	image: cnych/etcd:v3.4.13  # 镜像
+~~~
+
+* 1.kubebuilder init --domain ydzs.io --owner cnych --repo github.com/cnych/etcd-operator 
+
+* 2.kubebuilder create api --group etcd --version v1alpha1 --kind EtcdCluster
+
+* 3.make 
+
+* 4.修改文件 api/v1alpha1/etcdcluster_types.go 
+
+> 注意每次修改完成后需要执行 make 命令重新生成代码
+
+~~~go
+// EtcdClusterSpec defines the desired state of EtcdCluster
+type EtcdClusterSpec struct {
+	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
+	// Important: Run "make" to regenerate code after modifying this file
+
+	Size  *int32  `json:"size"`
+	Image string  `json:"image"`
+}
+~~~
+
+* 5.业务逻辑
+
+
+
+
+11.校验准入控制器实现
 
 * kubeadm 构建高可用集群
 
 * 只允许使用来自白名单镜像仓库的资源创建 Pod，拒绝使用不受信任的镜像仓库中进行拉取镜像
 
-13.Mutate 准入控制器实现
+12.Mutate 准入控制器实现
 
-14.自动生成证书和自动注入
+13.自动生成证书和自动注入
 
-15.实现一个一个自定义的ingress 控制器
+14.实现一个一个自定义的ingress 控制器
 
-16.自定义一个调度器(打印日志和GPU）
+15.自定义一个调度器(打印日志和GPU）
 
 
 

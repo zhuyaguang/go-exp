@@ -1,0 +1,16 @@
+domain: ydzs.io
+layout:
+- go.kubebuilder.io/v3
+projectName: etcd-operator-demo
+repo: etcd-operator-demo
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: ydzs.io
+  group: etcd
+  kind: EtcdCluster
+  path: etcd-operator-demo/api/v1alpha1
+  version: v1alpha1
+version: "3"
