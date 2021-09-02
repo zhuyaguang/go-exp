@@ -102,10 +102,24 @@ type OSSBackupSource struct {
 	Endpoint string `json:"endpoint,omitempty"`
 }
 
+type EtcdBackupPhase string
+
+var (
+	EtcdBackupPhaseBackingUp EtcdBackupPhase = "BackingUp"
+	EtcdBackupPhaseCompleted EtcdBackupPhase = "Completed"
+	EtcdBackupPhaseFailed    EtcdBackupPhase = "Failed"
+)
+
 // EtcdBackupStatus defines the observed state of EtcdBackup
 type EtcdBackupStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	// Phase defines the current operation that the backup process is taking.
+	Phase EtcdBackupPhase `json:"phase,omitempty"`
+	// StartTime is the times that this backup entered the `BackingUp' phase.
+	// +optional
+	StartTime *metav1.Time `json:"startTime,omitempty"`
+	// CompletionTime is the time that this backup entered the `Completed' phase.
+	// +optional
+	CompletionTime *metav1.Time `json:"completionTime,omitempty"`
 }
 
 //+kubebuilder:object:root=true

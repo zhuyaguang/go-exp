@@ -39,6 +39,7 @@ import (
 var (
 	scheme   = runtime.NewScheme()
 	setupLog = ctrl.Log.WithName("setup")
+	defaultBackupImage = "cnych/etcd-operator-backup:v0.0.4"  // 修改默认备份镜像地址
 )
 
 func init() {
