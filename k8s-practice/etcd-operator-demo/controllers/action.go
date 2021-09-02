@@ -5,11 +5,10 @@ import (
 	"fmt"
 	"reflect"
 
-	"k8s.io/apimachinery/pkg/runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
 
-// 定义的执行动作接口
+// Action 定义的执行动作接口
 type Action interface {
 	Execute(context.Context) error
 }
@@ -17,8 +16,8 @@ type Action interface {
 // PatchStatus 用户更新对象 status 状态
 type PatchStatus struct {
 	client   client.Client
-	original runtime.Object
-	new      runtime.Object
+	original client.Object
+	new      client.Object
 }
 
 func (o *PatchStatus) Execute(ctx context.Context) error {
@@ -36,7 +35,7 @@ func (o *PatchStatus) Execute(ctx context.Context) error {
 // CreateObject 创建一个新的资源对象
 type CreateObject struct {
 	client client.Client
-	obj    runtime.Object
+	obj    client.Object
 }
 
 func (o *CreateObject) Execute(ctx context.Context) error {

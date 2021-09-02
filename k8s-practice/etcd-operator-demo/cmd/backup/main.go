@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/cnych/etcd-operator/pkg/file"
+	uploader "etcd-operator-demo/pkg/file"
 	"github.com/go-logr/logr"
 	"github.com/go-logr/zapr"
 	"go.etcd.io/etcd/clientv3"

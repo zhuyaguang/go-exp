@@ -89,6 +89,7 @@ func main() {
 	if err = (&controllers.EtcdBackupReconciler{
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),
+		BackupAgentImage: defaultBackupImage,
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "EtcdBackup")
 		os.Exit(1)

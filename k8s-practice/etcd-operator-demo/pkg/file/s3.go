@@ -21,7 +21,7 @@ func NewS3Uploader(Endpoint, AK, SK string) *s3Uploader {
 	}
 }
 
-// 初使化 minio client 对象
+// InitClient 初使化 minio client 对象
 func (su *s3Uploader) InitClient() (*minio.Client, error) {
 	return minio.New(su.Endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(su.AccessKeyID, su.SecretAccessKey, ""),
