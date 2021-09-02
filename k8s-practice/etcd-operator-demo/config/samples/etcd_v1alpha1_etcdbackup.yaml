@@ -3,5 +3,11 @@ kind: EtcdBackup
 metadata:
   name: etcdbackup-sample
 spec:
-  # Add fields here
-  foo: bar
+  etcdUrl: <etcd-cluster-endpoints>  # 备份的节点 etcd 地址
+  storageType: s3  # 指定备份类型
+  s3:
+    path: "foo-bucket/snapshot.db"  # 数据存放目录
+    s3Secret: "secret"   # 包含 accessKeyID 与 secretAccessKey
+  oss:
+    path: "foo-bucket/snapshot.db"
+    ossSecret: "secret"

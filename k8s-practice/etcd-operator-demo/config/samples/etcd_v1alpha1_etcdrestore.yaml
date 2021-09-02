@@ -1,0 +1,11 @@
+apiVersion: etcd.ydzs.io/v1alpha1
+kind: EtcdRestore
+metadata:
+  name: etcdrestore-sample
+spec:
+	etcdCluster:  # EtcdCluster 资源对象引用
+		name: etcd-demo
+  backupStorageType: s3  # 指定备份类型
+  s3:
+    path: "foo-bucket/snapshot.db"  # 数据备份的目录
+    secret: "secret"   # 包含 accessKeyID 与 secretAccessKey

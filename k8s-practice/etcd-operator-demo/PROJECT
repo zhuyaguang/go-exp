@@ -22,4 +22,13 @@ resources:
   kind: EtcdBackup
   path: etcd-operator-demo/api/v1alpha1
   version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: ydzs.io
+  group: etcd
+  kind: EtcdRestore
+  path: etcd-operator-demo/api/v1alpha1
+  version: v1alpha1
 version: "3"
