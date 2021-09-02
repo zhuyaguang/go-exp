@@ -38,7 +38,6 @@ type EtcdBackupSpec struct {
 	BackupSource `json:",inline"`
 }
 
-
 // BackupSource contains the supported backup sources.
 type BackupSource struct {
 	// S3 defines the S3 backup source spec.

@@ -37,9 +37,9 @@ import (
 )
 
 var (
-	scheme   = runtime.NewScheme()
-	setupLog = ctrl.Log.WithName("setup")
-	defaultBackupImage = "cnych/etcd-operator-backup:v0.0.4"  // 修改默认备份镜像地址
+	scheme             = runtime.NewScheme()
+	setupLog           = ctrl.Log.WithName("setup")
+	defaultBackupImage = "cnych/etcd-operator-backup:v0.0.4" // 修改默认备份镜像地址
 )
 
 func init() {
@@ -87,8 +87,8 @@ func main() {
 		os.Exit(1)
 	}
 	if err = (&controllers.EtcdBackupReconciler{
-		Client: mgr.GetClient(),
-		Scheme: mgr.GetScheme(),
+		Client:           mgr.GetClient(),
+		Scheme:           mgr.GetScheme(),
 		BackupAgentImage: defaultBackupImage,
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "EtcdBackup")

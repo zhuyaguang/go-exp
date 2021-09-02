@@ -59,8 +59,8 @@ func main() {
 	if err != nil {
 		panic(loggedError(log, err, "failed to get etcd snapshot"))
 	}
-	
-  // 临时测试
+
+	// 临时测试
 	endpoint := "play.min.io"
 	accessKeyID := "Q3AM3UQ867SPQQA43P2F"
 	secretAccessKey := "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG"

@@ -35,7 +35,7 @@ import (
 // EtcdBackupReconciler reconciles a EtcdBackup object
 type EtcdBackupReconciler struct {
 	client.Client
-	Scheme *runtime.Scheme
+	Scheme           *runtime.Scheme
 	BackupAgentImage string
 }
 
@@ -169,7 +169,6 @@ func (r *EtcdBackupReconciler) setStateDesired(state *backupState) error {
 	return nil
 }
 
-
 // getState 用来获取当前应用的整个状态，然后才方便判断下一步动作
 func (r EtcdBackupReconciler) getState(ctx context.Context, req ctrl.Request) (*backupState, error) {
 	var state backupState
@@ -210,7 +209,7 @@ func podForBackup(backup *etcdv1alpha1.EtcdBackup, image string) (*corev1.Pod, e
 			Containers: []corev1.Container{
 				{
 					Name:  "backup-agent",
-					Image: image,  // todo，执行备份的镜像
+					Image: image, // todo，执行备份的镜像
 					Resources: corev1.ResourceRequirements{
 						Requests: corev1.ResourceList{
 							corev1.ResourceCPU:    resource.MustParse("100m"),
