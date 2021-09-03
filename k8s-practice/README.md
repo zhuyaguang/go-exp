@@ -103,19 +103,29 @@ type EtcdClusterSpec struct {
 
 
 
-11.校验准入控制器实现
+### 11.校验准入控制器实现
 
-* kubeadm 构建高可用集群
+* kind K8S 集群中可以进去kind容器/etc/kubernetes/manifest目录，修改API-server配置
 
 * 只允许使用来自白名单镜像仓库的资源创建 Pod，拒绝使用不受信任的镜像仓库中进行拉取镜像
 
-12.Mutate 准入控制器实现
+* cfssl 生成证书
 
-13.自动生成证书和自动注入
+### 12.Mutate 准入控制器实现
 
-14.实现一个一个自定义的ingress 控制器
+* 当我们的资源对象（Deployment 或 Service）中包含一个需要 mutate 的 annotation 注解后，通过这个 Webhook 后我们就给这个对象添加上一个执行了 mutate 操作的注解
 
-15.自定义一个调度器(打印日志和GPU）
+* 管理 Admission Webhook 的 TLS 证书：使用自签名证书，然后通过使用 Init 容器来自行处理 CA。
+
+
+### 13.实现一个一个自定义的ingress 控制器
+
+* 通过 Kubernetes API 查询和监听 Service、Ingress 以及 Secret 这些对象
+* 加载 TLS 证书用于 HTTPS 请求
+* 根据加载的 Kubernetes 数据构造一个用于 HTTP 服务的路由，当然该路由需要非常高效，因为所有传入的流量都将通过该路由
+* 在 80 和 443 端口上监听传入的 HTTP 请求，然后根据路由查找对应的后端服务，然后代理请求和响应。443 端口将使用 TLS 证书进行安全连接。
+
+14.自定义一个调度器(打印日志和GPU）
 
 
 
@@ -127,10 +137,8 @@ type EtcdClusterSpec struct {
 
 2. 修改kube-apiserver配置，构建admissionwebhook
 
-3. 开发etcd-operator-demo
+3. 开发自定义ingress控制器
 
-4. 开发自定义ingress控制器
-
-5. 开发自定义调度器
+4. 开发自定义调度器
 
    
