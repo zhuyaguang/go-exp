@@ -65,7 +65,7 @@ drwxr-xr-x  10 ych  staff   320 Oct 10  2018 ..
 
 
 
-### 10.从0到1开发一个etcd operator
+### 10.从0到1开发一个etcd operator(etcd-operator-demo)
 在开发 Operator 之前我们需要先提前想好我们的 CRD 资源对象
 ~~~yaml
 apiVersion: etcd.ydzs.io/v1alpha1
@@ -73,8 +73,8 @@ kind: EtcdCluster
 metadata:
   name: demo
 spec:
-	size: 3  # 副本数量
-	image: cnych/etcd:v3.4.13  # 镜像
+    size: 3  # 副本数量
+    image: cnych/etcd:v3.4.13  # 镜像
 ~~~
 
 * 1.kubebuilder init --domain ydzs.io --owner cnych --repo github.com/cnych/etcd-operator 
