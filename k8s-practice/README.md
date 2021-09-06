@@ -103,7 +103,7 @@ type EtcdClusterSpec struct {
 
 
 
-### 11.校验准入控制器实现
+### 11.校验准入控制器实现（admission-registry）
 
 * kind K8S 集群中可以进去kind容器/etc/kubernetes/manifest目录，修改API-server配置
 
@@ -111,7 +111,7 @@ type EtcdClusterSpec struct {
 
 * cfssl 生成证书
 
-### 12.Mutate 准入控制器实现
+### 12.Mutate 准入控制器实现（admission-registry）
 
 * 当我们的资源对象（Deployment 或 Service）中包含一个需要 mutate 的 annotation 注解后，通过这个 Webhook 后我们就给这个对象添加上一个执行了 mutate 操作的注解
 
@@ -134,8 +134,6 @@ type EtcdClusterSpec struct {
 ### 遗留作业
 
 1. kubeadm 构建高可用集群
-
-2. 修改kube-apiserver配置，构建admissionwebhook
 
 3. 开发自定义ingress控制器
 
