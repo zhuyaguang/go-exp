@@ -13,7 +13,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/cnych/admission-registry/pkg"
+	"admission-registry/pkg"
 	admissionv1 "k8s.io/api/admissionregistration/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
