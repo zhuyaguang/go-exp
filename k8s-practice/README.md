@@ -118,7 +118,7 @@ type EtcdClusterSpec struct {
 * 管理 Admission Webhook 的 TLS 证书：使用自签名证书，然后通过使用 Init 容器来自行处理 CA。
 
 
-### 13.实现一个一个自定义的ingress 控制器
+### [13.实现一个一个自定义的ingress 控制器](https://github.com/cnych/simple-ingress)
 
 * 通过 Kubernetes API 查询和监听 Service、Ingress 以及 Secret 这些对象
 * 加载 TLS 证书用于 HTTPS 请求
@@ -134,8 +134,6 @@ type EtcdClusterSpec struct {
 ### 遗留作业
 
 1. kubeadm 构建高可用集群
-
-3. 开发自定义ingress控制器
 
 4. 开发自定义调度器
 
