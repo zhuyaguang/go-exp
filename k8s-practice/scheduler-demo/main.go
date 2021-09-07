@@ -5,9 +5,9 @@ import (
 	"os"
 	"time"
 
-	"scheduler-demo/pkg/plugins"
-
 	"k8s.io/component-base/logs"
+	 "scheduler-demo/pkg/plugins"
+
 	"k8s.io/kubernetes/cmd/kube-scheduler/app"
 )
 
