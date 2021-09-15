@@ -3,6 +3,8 @@
 ## 一、k8s 部署 prometheus
 > 提前创建好namespaces：`kubectl create  ns kube-mon`
 
+参考阳明老师普罗米修斯教程：https://www.qikqiak.com/k8strain/monitor/prometheus/
+
 ### 1. 用 ConfigMap 形式配置prometheus.yaml(prometheus-cm.yaml)
 
 `kubectl apply -f prometheus-cm.yaml`
