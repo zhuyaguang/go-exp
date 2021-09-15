@@ -221,7 +221,10 @@ data:
           description: "{{$labels.instance}}: Memory usage is above 20% (current value is: {{ $value }}"
 ~~~
 
+ * 开箱即用的 Prometheus 告警规则集 :[Awesome Prometheus Alerts](https://github.com/samber/awesome-prometheus-alerts)
+
 ###  设置 WebHook 接收器
+* 告警插件 推送钉钉： https://github.com/timonwong/prometheus-webhook-dingtalk 
 
 ## 四、Prometheus 高可用
 
@@ -231,5 +234,26 @@ data:
 
 ## 七、Prometheus Operator
 
+## 八、容器化部署 系统监控容器
 
+1. node-exporter监控节点  gpu-exporter 监控GPU  cadvisor监控容器
 
+~~~shell
+docker run -d  --restart always   -v "/proc:/host/proc:ro"   -v "/sys:/host/sys:ro"   -v "/:/rootfs:ro"   --net="host"   --name node-exporter   prom/node-exporter
+docker run -d --gpus all --restart always  --name gpu-exporter -p 9400:9400 nvidia/dcgm-exporter:2.0.13-2.1.1-ubuntu18.04
+docker run  --restart always   --volume=/:/rootfs:ro   --volume=/var/run:/var/run:ro   --volume=/sys:/sys:ro   --volume=/var/lib/docker/:/var/lib/docker:ro  --volume=/dev/disk/:/dev/disk:ro  --publish=8080:8080   --detach=true   --name=cadvisor   google/cadvisor:latest
+~~~
+
+2. 普罗米修斯安装
+~~~shell
+docker run  -d   -p 9090:9090   -v /data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  --name prometheus   prom/prometheus
+~~~
+
+3. grafana安装
+~~~
+docker run -d   -p 3000:3000   --name=grafana -v /data/grafana-storage:/var/lib/grafana grafana/grafana
+~~~
+
+## [Prometheus 监控外部 Kubernetes 集群](https://www.qikqiak.com/post/monitor-external-k8s-on-prometheus/)
+
+* 创建用于 Prometheus 访问 Kubernetes 资源对象的 RBAC 对象
