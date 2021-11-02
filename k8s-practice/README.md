@@ -25,7 +25,7 @@
 
 ### 5.编写一个标准的crd资源文件(crd-demo)
 
-
+* 创建一个新的 API（组/版本）为 “webapp/v1”，并在上面创建新的 Kind(CRD) “Guestbook”。
 
 ### 6.给自定义的crd资源编写一个控制器(crd-controller-demo)
 
@@ -126,6 +126,9 @@ type EtcdClusterSpec struct {
 * 在 80 和 443 端口上监听传入的 HTTP 请求，然后根据路由查找对应的后端服务，然后代理请求和响应。443 端口将使用 TLS 证书进行安全连接。
 
 ### 14.自定义一个调度器(打印日志和GPU）（scheduler-demo）
+
+
+### 15. CronJob operator ()
 
 
 ## 参考资料
