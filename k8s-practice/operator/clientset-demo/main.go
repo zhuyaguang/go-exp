@@ -19,7 +19,7 @@ func main() {
 	//getPods()
 	getDeployment()
 }
-
+// 查询pod个数
 func getPods() {
 	config := getConfig()
 	// creates the clientset
@@ -39,6 +39,7 @@ func getPods() {
 	}
 }
 
+// 创建deploy
 func createDeployment(ctx context.Context, ns string) error {
 	// creates the in-cluster config
 	config := getConfig()
@@ -86,6 +87,7 @@ func homeDir() string {
 	return os.Getenv("USERPROFILE") // windows
 }
 
+// 查询deploy个数
 func getDeployment() {
 
 	config := getConfig()

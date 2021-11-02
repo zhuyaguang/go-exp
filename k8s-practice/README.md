@@ -125,7 +125,13 @@ type EtcdClusterSpec struct {
 * 根据加载的 Kubernetes 数据构造一个用于 HTTP 服务的路由，当然该路由需要非常高效，因为所有传入的流量都将通过该路由
 * 在 80 和 443 端口上监听传入的 HTTP 请求，然后根据路由查找对应的后端服务，然后代理请求和响应。443 端口将使用 TLS 证书进行安全连接。
 
-14.自定义一个调度器(打印日志和GPU）（scheduler-demo）
+### 14.自定义一个调度器(打印日志和GPU）（scheduler-demo）
+
+
+## 参考资料
+
+[kubebuilder中文官网](https://cloudnative.to/kubebuilder/introduction.html)
+
 
 
    

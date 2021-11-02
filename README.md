@@ -1,7 +1,9 @@
 ## go-zero 实践
 * shorturl demo
 
-## [k8s 二次开发实践](./k8s-practice)
+## K8S 实践
+### [k8s 二次开发实践](./k8s-practice)
+### [Rook部署Ceph集群](./k8s-practice/storage)
 
 ## prometheus 实践
 
