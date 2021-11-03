@@ -128,8 +128,13 @@ type EtcdClusterSpec struct {
 ### 14.自定义一个调度器(打印日志和GPU）（scheduler-demo）
 
 
-### 15. CronJob operator ()
+### 15. CronJob operator (cronjob-operator)
 
+* kubebuilder offcer demo
+
+### 16. label operator(label-operator)
+
+ * add pod label 
 
 ## 参考资料
 
