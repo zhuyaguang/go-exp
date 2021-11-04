@@ -140,6 +140,22 @@ type EtcdClusterSpec struct {
 
 [kubebuilder中文官网](https://cloudnative.to/kubebuilder/introduction.html)
 
+[operator大全](https://operatorhub.io/ )
+ 
+## K8s API 可视化
 
+* `kubectl proxy --port=8080`
 
+* `curl localhost:8080/openapi/v2 > k8s-swagger.json`
+
+```
+docker run \
+    --rm \
+    -p 80:8080 \
+    -e SWAGGER_JSON=/k8s-swagger.json \
+    -v $(pwd)/k8s-swagger.json:/k8s-swagger.json \
+    swaggerapi/swagger-ui
+```
+
+* [http://localhost](http://localhost/)
    
