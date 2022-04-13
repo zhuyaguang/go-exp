@@ -1,0 +1,1 @@
+运行下面的命令，创建一个新的 API（组/版本）为 “webapp/v1”，并在上面创建新的 Kind(CRD) “Guestbook”。

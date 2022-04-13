@@ -1,5 +1,6 @@
 ## go-zero 实践
 * shorturl demo
+* go-zero-api 用go-zero 改写gin-apiserver
 
 ## K8S 实践
 ### [k8s 二次开发实践](./k8s-practice)

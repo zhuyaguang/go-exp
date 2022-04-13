@@ -1,0 +1,41 @@
+syntax = "v1"
+
+info(
+	title: "user"
+	desc: "register and login"
+	author: "zhuyaguang"
+	email: "zhuyaguang1368@163.com"
+)
+
+type LoginRequest {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type LoginResponse {
+	Status  string `json:"status"`
+	Message string `json:"message"`
+}
+
+type RegisterRequest {
+	Username    string `json:"username"`
+	Password    string `json:"password"`
+	Phonenumber string `json:"phonenumber"`
+}
+
+type RegisterResponse {
+	Status  string `json:"status"`
+	Message string `json:"message"`
+	Data    string `json:"data"`
+}
+
+service user-api {
+	@handler Login
+	post /user/login (LoginRequest) returns(LoginResponse)
+	
+	@handler CreateUser
+	post /user (RegisterRequest) returns (RegisterResponse)
+	
+	@handler GetUser
+	get /users/:userId() returns(RegisterRequest)
+}

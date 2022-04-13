@@ -25,7 +25,7 @@
 
 ### 5.编写一个标准的crd资源文件(crd-demo)
 
-
+* 创建一个新的 API（组/版本）为 “webapp/v1”，并在上面创建新的 Kind(CRD) “Guestbook”。
 
 ### 6.给自定义的crd资源编写一个控制器(crd-controller-demo)
 
@@ -128,10 +128,34 @@ type EtcdClusterSpec struct {
 ### 14.自定义一个调度器(打印日志和GPU）（scheduler-demo）
 
 
+### 15. CronJob operator (cronjob-operator)
+
+* kubebuilder offcer demo
+
+### 16. label operator(label-operator)
+
+ * add pod label 
+
 ## 参考资料
 
 [kubebuilder中文官网](https://cloudnative.to/kubebuilder/introduction.html)
 
+[operator大全](https://operatorhub.io/ )
+ 
+## K8s API 可视化
 
+* `kubectl proxy --port=8080`
 
+* `curl localhost:8080/openapi/v2 > k8s-swagger.json`
+
+```
+docker run \
+    --rm \
+    -p 80:8080 \
+    -e SWAGGER_JSON=/k8s-swagger.json \
+    -v $(pwd)/k8s-swagger.json:/k8s-swagger.json \
+    swaggerapi/swagger-ui
+```
+
+* [http://localhost](http://localhost/)
    
